@@ -1,13 +1,16 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import Moon from '$lib/images/Moon.svelte';
-	import Sun from '$lib/images/Sun.svelte';
+	import IconMoon from '$lib/images/IconMoon.svelte';
+	import IconSun from '$lib/images/IconSun.svelte';
+	import { onMount } from 'svelte';
 
-	let theme = localStorage.getItem('theme') ?? 'dark';
+	export let theme = 'dark';
 	$: if (browser && document) {
 		document.documentElement.dataset.theme = theme;
-		localStorage.setItem('theme', theme);
 	}
+	onMount(() => {
+		theme = localStorage.getItem('theme') ?? 'dark';
+	});
 
 	function toggle() {
 		if (theme === 'dark') {
@@ -15,13 +18,14 @@
 		} else {
 			theme = 'dark';
 		}
+		localStorage.setItem('theme', theme);
 	}
 </script>
 
 <button on:click={toggle}>
 	{#if theme === 'dark'}
-		<Moon />
+		<IconMoon />
 	{:else}
-		<Sun />
+		<IconSun />
 	{/if}
 </button>
