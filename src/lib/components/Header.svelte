@@ -2,5 +2,15 @@
 	import ThemeController from './ThemeController.svelte';
 </script>
 
-<h1>TODO</h1>
-<ThemeController />
+<div>
+	<h1>TODO</h1>
+	<ThemeController />
+</div>
+
+<style>
+	div {
+		display: grid;
+		place-items: center;
+		grid-template-columns: repeat(2, 1fr);
+	}
+</style>
