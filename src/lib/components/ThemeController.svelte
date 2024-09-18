@@ -1,7 +1,7 @@
 <script lang="ts">
 	import IconMoon from '$lib/images/IconMoon.svelte';
 	import IconSun from '$lib/images/IconSun.svelte';
-	import { theme, toggleTheme } from '$lib/themeStore';
+	import { theme, toggleTheme } from '$lib/stores/themeStore';
 </script>
 
 <svelte:head>
