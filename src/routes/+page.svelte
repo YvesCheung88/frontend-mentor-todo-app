@@ -2,22 +2,10 @@
 	import { theme } from '$lib/stores/theme';
 	import { fade } from 'svelte/transition';
 	import Header from '$lib/components/Header.svelte';
-	import { createTodo, type Todo as TodoType } from '$lib/stores/Todo';
+	import { todos } from '$lib/stores/Todo';
 	import TodoTextInput from '$lib/components/TodoTextInput.svelte';
 	import Todo from '$lib/components/Todo.svelte';
 	import FooterTodoList from '$lib/components/FooterTodoList.svelte';
-	let filteredToDoList: TodoType[] = [];
-	let todoList =
-		process.env.NODE_ENV === 'development'
-			? [
-					{ text: 'Complete online Javascript course' },
-					{ text: 'Jog around the park 3x' },
-					{ text: '10 minutes meditation' },
-					{ text: 'Read for 1 hour' },
-					{ text: 'Pick up groceries' },
-					{ text: 'Complete Todo App on Frontend Mentor' }
-				].map(createTodo)
-			: [];
 </script>
 
 <figure>
@@ -33,10 +21,10 @@
 <div class="px-6 pb-11 max-w-[40rem] mx-auto">
 	<Header />
 	<TodoTextInput />
-	{#each filteredToDoList as todo (todo)}
-		<Todo bind:todoList {todo} />
+	{#each $todos as todo (todo)}
+		<Todo {todo} />
 	{/each}
-	<FooterTodoList bind:todoList bind:filteredToDoList />
+	<!-- <FooterTodoList bind:todoList filteredToDoList={$todos} /> -->
 </div>
 
 <style>
