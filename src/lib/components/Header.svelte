@@ -9,8 +9,14 @@
 
 <style>
 	div {
-		display: grid;
-		place-items: center;
-		grid-template-columns: repeat(2, 1fr);
+		display: flex;
+		justify-content: space-between;
+		color: white;
+		margin-top: -100px;
+		& h1 {
+			margin: 20px 0;
+			font-size: 46px;
+			font-weight: 700;
+		}
 	}
 </style>
