@@ -3,21 +3,26 @@
 	import { fade } from 'svelte/transition';
 	import Header from '$lib/components/Header.svelte';
 	import { flip } from 'svelte/animate';
-	let newTodoList = '';
+	import { createTodo, type Todo } from '$lib/stores/Todo';
+	let todoTextValue = '';
 	let filter = 'all';
 	let todoList = [
-		{ text: 'Complete online Javascript course', status: false },
-		{ text: 'Jog around the park 3x', status: false },
-		{ text: '10 minutes meditation', status: false },
-		{ text: 'Read for 1 hour', status: false },
-		{ text: 'Pick up groceries', status: false },
-		{ text: 'Complete Todo App on Frontend Mentor', status: false }
-	];
+		{ text: 'Complete online Javascript course' },
+		{ text: 'Jog around the park 3x' },
+		{ text: '10 minutes meditation' },
+		{ text: 'Read for 1 hour' },
+		{ text: 'Pick up groceries' },
+		{ text: 'Complete Todo App on Frontend Mentor' }
+	].map(createTodo);
 
 	function onSubmitToList() {
-		if (newTodoList.trim() !== '') {
-			todoList = [...todoList, { text: newTodoList, status: false }];
-			newTodoList = '';
+		if (todoTextValue.trim() !== '') {
+			const newTodo = createTodo({
+				text: todoTextValue
+			});
+			todoList = [...todoList, newTodo];
+			console.log(` ID=${newTodo.id}, Text="${newTodo.text}"`);
+			todoTextValue = '';
 		}
 	}
 	function removeFromList(index: number) {
@@ -48,7 +53,7 @@
 <div class="px-6 pb-11 max-w-[40rem] mx-auto">
 	<Header />
 	<form on:submit|preventDefault={onSubmitToList}>
-		<input type="text" bind:value={newTodoList} placeholder="Create a new todo..." />
+		<input type="text" bind:value={todoTextValue} placeholder="Create a new todo..." />
 	</form>
 	{#each filteredToDoList as todo, index (todo)}
 		<div class="list" transition:fade animate:flip>
@@ -81,6 +86,7 @@
 	figure {
 		position: relative;
 		padding-top: 256px;
+		z-index: -1;
 		& img {
 			position: absolute;
 			height: 256px;
