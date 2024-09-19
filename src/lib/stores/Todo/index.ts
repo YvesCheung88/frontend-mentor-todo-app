@@ -33,6 +33,11 @@ export const todos = writable<Todo[]>(
 export const addTodo = (data: Omit<Todo, 'id' | 'status'>) => {
 	todos.update(($todos) => [...$todos, createTodo(data)]);
 };
+
+export const removeTodo = (data: Pick<Todo, 'id'>) => {
+	todos.update(($todos) => $todos.filter((todo) => todo.id !== data.id));
+};
+
 todos.subscribe(($todos) => {
 	if (browser) {
 		console.log($todos);
