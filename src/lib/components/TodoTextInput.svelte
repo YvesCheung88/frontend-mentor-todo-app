@@ -1,15 +1,13 @@
 <script lang="ts">
-	import { createTodo, type Todo } from '$lib/stores/Todo';
-	export let todoList: Todo[];
+	import { addTodo } from '$lib/stores/Todo';
 
 	let todoTextValue = '';
 
 	function onSubmitToList() {
 		if (todoTextValue.trim() !== '') {
-			const newTodo = createTodo({
+			addTodo({
 				text: todoTextValue
 			});
-			todoList = [...todoList, newTodo];
 			todoTextValue = '';
 		}
 	}
