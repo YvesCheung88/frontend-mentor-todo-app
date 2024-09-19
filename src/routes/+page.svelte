@@ -3,17 +3,20 @@
 	import { fade } from 'svelte/transition';
 	import Header from '$lib/components/Header.svelte';
 	import { flip } from 'svelte/animate';
-	import { createTodo, type Todo } from '$lib/stores/Todo';
+	import { createTodo } from '$lib/stores/Todo';
 	let todoTextValue = '';
 	let filter = 'all';
-	let todoList = [
-		{ text: 'Complete online Javascript course' },
-		{ text: 'Jog around the park 3x' },
-		{ text: '10 minutes meditation' },
-		{ text: 'Read for 1 hour' },
-		{ text: 'Pick up groceries' },
-		{ text: 'Complete Todo App on Frontend Mentor' }
-	].map(createTodo);
+	let todoList =
+		process.env.NODE_ENV === 'development'
+			? [
+					{ text: 'Complete online Javascript course' },
+					{ text: 'Jog around the park 3x' },
+					{ text: '10 minutes meditation' },
+					{ text: 'Read for 1 hour' },
+					{ text: 'Pick up groceries' },
+					{ text: 'Complete Todo App on Frontend Mentor' }
+				].map(createTodo)
+			: [];
 
 	function onSubmitToList() {
 		if (todoTextValue.trim() !== '') {
@@ -21,7 +24,6 @@
 				text: todoTextValue
 			});
 			todoList = [...todoList, newTodo];
-			console.log(` ID=${newTodo.id}, Text="${newTodo.text}"`);
 			todoTextValue = '';
 		}
 	}
