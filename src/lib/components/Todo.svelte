@@ -1,17 +1,13 @@
 <script lang="ts">
-	import type { Todo } from '$lib/stores/Todo';
+	import { removeTodo, type Todo, todos } from '$lib/stores/Todo';
 	import { fade } from 'svelte/transition';
 	export let todo: Todo;
-	export let todoList: Todo[];
-	function removeFromList() {
-		todoList = todoList.filter((item) => item.id !== todo.id);
-	}
 </script>
 
 <div class="list" transition:fade>
 	<input type="checkbox" bind:checked={todo.status} />
 	<span class:checked={todo.status}>{todo.text}</span>
-	<button on:click={() => removeFromList()}>
+	<button on:click={() => removeTodo(todo)}>
 		<img src="/images/icon-cross.svg" alt="cross" />
 	</button>
 </div>
