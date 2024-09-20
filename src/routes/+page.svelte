@@ -2,10 +2,8 @@
 	import { theme } from '$lib/stores/theme';
 	import { fade } from 'svelte/transition';
 	import Header from '$lib/components/Header.svelte';
-	import { filteredTodos } from '$lib/stores/Todo';
 	import TodoTextInput from '$lib/components/TodoTextInput.svelte';
-	import Todo from '$lib/components/Todo.svelte';
-	import FooterTodoList from '$lib/components/FooterTodoList.svelte';
+	import TodoList from '$lib/components/TodoList.svelte';
 </script>
 
 <figure>
@@ -21,10 +19,7 @@
 <div class="px-6 pb-11 max-w-[40rem] mx-auto">
 	<Header />
 	<TodoTextInput />
-	{#each $filteredTodos as todo (todo)}
-		<Todo {todo} />
-	{/each}
-	<FooterTodoList />
+	<TodoList />
 </div>
 
 <style>
@@ -40,6 +35,7 @@
 			height: 256px;
 			top: 0px;
 			object-fit: cover;
+			width: 100%;
 		}
 	}
 </style>

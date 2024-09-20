@@ -58,9 +58,3 @@ export const toggleTodoStatus = (data: Pick<Todo, 'id'>) => {
 export const clearCompleted = () => {
 	todos.update(($todos) => $todos.filter((todo) => !todo.status));
 };
-
-todos.subscribe(($todos) => {
-	if (browser) {
-		console.log($todos);
-	}
-});
