@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { clearCompleted, todoFilter, type Todo } from '$lib/stores/Todo';
-	let todoList: Todo[] = [];
+	import { clearCompleted, todoFilter, todos, type Todo } from '$lib/stores/Todo';
 	let filteredToDoList: Todo[];
 	const filters = ['all', 'active', 'completed'] as const;
-	$: taskLeftCounter = todoList.filter((todo) => !todo.status).length;
+	$: taskLeftCounter = $todos.filter((todo) => !todo.status).length;
 
-	$: filteredToDoList = todoList.filter((todo) => {
+	$: filteredToDoList = $todos.filter((todo) => {
 		if ($todoFilter === 'active') return !todo.status;
 		if ($todoFilter === 'completed') return todo.status;
 		return true;
