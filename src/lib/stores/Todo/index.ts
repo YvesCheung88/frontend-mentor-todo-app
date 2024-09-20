@@ -1,5 +1,5 @@
 import { browser } from '$app/environment';
-import { writable } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 
 export type Todo = {
 	id: number;
@@ -30,6 +30,14 @@ export const todos = writable<Todo[]>(
 		: []
 );
 export const todoFilter = writable<'all' | 'active' | 'completed'>('all');
+
+export const filteredTodos = derived([todos, todoFilter], ([$todos, $todoFilter]) => {
+	return $todos.filter((todo) => {
+		if ($todoFilter === 'active') return !todo.status;
+		if ($todoFilter === 'completed') return todo.status;
+		return true;
+	});
+});
 
 export const addTodo = (data: Omit<Todo, 'id' | 'status'>) => {
 	todos.update(($todos) => [...$todos, createTodo(data)]);

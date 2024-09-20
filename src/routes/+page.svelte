@@ -2,7 +2,7 @@
 	import { theme } from '$lib/stores/theme';
 	import { fade } from 'svelte/transition';
 	import Header from '$lib/components/Header.svelte';
-	import { todos } from '$lib/stores/Todo';
+	import { filteredTodos } from '$lib/stores/Todo';
 	import TodoTextInput from '$lib/components/TodoTextInput.svelte';
 	import Todo from '$lib/components/Todo.svelte';
 	import FooterTodoList from '$lib/components/FooterTodoList.svelte';
@@ -21,7 +21,7 @@
 <div class="px-6 pb-11 max-w-[40rem] mx-auto">
 	<Header />
 	<TodoTextInput />
-	{#each $todos as todo (todo)}
+	{#each $filteredTodos as todo (todo)}
 		<Todo {todo} />
 	{/each}
 	<FooterTodoList />
