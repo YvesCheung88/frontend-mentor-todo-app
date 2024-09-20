@@ -1,12 +1,9 @@
 <script lang="ts">
-	import type { Todo } from '$lib/stores/Todo';
-	export let todoList: Todo[];
-	export let filter = 'all';
-	export let filteredToDoList: Todo[];
+	import { clearCompleted, type Todo } from '$lib/stores/Todo';
+	let todoList: Todo[] = [];
+	let filter = 'all';
+	let filteredToDoList: Todo[];
 
-	function clearCompleted() {
-		todoList = todoList.filter((todo) => !todo.status);
-	}
 	$: taskLeftCounter = todoList.filter((todo) => !todo.status).length;
 
 	$: filteredToDoList = todoList.filter((todo) => {

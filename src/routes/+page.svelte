@@ -24,7 +24,7 @@
 	{#each $todos as todo (todo)}
 		<Todo {todo} />
 	{/each}
-	<!-- <FooterTodoList bind:todoList filteredToDoList={$todos} /> -->
+	<FooterTodoList />
 </div>
 
 <style>
