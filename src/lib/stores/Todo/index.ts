@@ -38,6 +38,14 @@ export const removeTodo = (data: Pick<Todo, 'id'>) => {
 	todos.update(($todos) => $todos.filter((todo) => todo.id !== data.id));
 };
 
+export const toggleTodoStatus = (data: Pick<Todo, 'id'>) => {
+	todos.update(($todos) => {
+		const targetTodo = $todos.find((todo) => todo.id === data.id)!;
+		targetTodo.status = !targetTodo.status;
+		return [...$todos];
+	});
+};
+
 todos.subscribe(($todos) => {
 	if (browser) {
 		console.log($todos);

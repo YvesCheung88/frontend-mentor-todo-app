@@ -1,11 +1,16 @@
 <script lang="ts">
-	import { removeTodo, type Todo, todos } from '$lib/stores/Todo';
+	import { removeTodo, type Todo, toggleTodoStatus } from '$lib/stores/Todo';
 	import { fade } from 'svelte/transition';
+
 	export let todo: Todo;
+	let status = todo.status;
+	$: if (status !== todo.status) {
+		toggleTodoStatus(todo);
+	}
 </script>
 
 <div class="list" transition:fade>
-	<input type="checkbox" bind:checked={todo.status} />
+	<input type="checkbox" bind:checked={status} />
 	<span class:checked={todo.status}>{todo.text}</span>
 	<button on:click={() => removeTodo(todo)}>
 		<img src="/images/icon-cross.svg" alt="cross" />
