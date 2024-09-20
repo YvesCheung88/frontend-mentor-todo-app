@@ -1,14 +1,13 @@
 <script lang="ts">
-	import { clearCompleted, type Todo } from '$lib/stores/Todo';
+	import { clearCompleted, todoFilter, type Todo } from '$lib/stores/Todo';
 	let todoList: Todo[] = [];
-	let filter = 'all';
 	let filteredToDoList: Todo[];
-
+	const filters = ['all', 'active', 'completed'] as const;
 	$: taskLeftCounter = todoList.filter((todo) => !todo.status).length;
 
 	$: filteredToDoList = todoList.filter((todo) => {
-		if (filter === 'active') return !todo.status;
-		if (filter === 'completed') return todo.status;
+		if ($todoFilter === 'active') return !todo.status;
+		if ($todoFilter === 'completed') return todo.status;
 		return true;
 	});
 </script>
@@ -16,11 +15,11 @@
 <div class="footerTodoList">
 	<span>{taskLeftCounter} Item left</span>
 	<div class="filters">
-		{#each ['all', 'active', 'completed'] as name}
+		{#each filters as name}
 			<button
 				class={`filter_${name}`}
-				class:active={filter === name}
-				on:click={() => (filter = name)}>{name}</button
+				class:active={$todoFilter === name}
+				on:click={() => ($todoFilter = name)}>{name}</button
 			>
 		{/each}
 	</div>

@@ -29,6 +29,7 @@ export const todos = writable<Todo[]>(
 			].map(createTodo)
 		: []
 );
+export const todoFilter = writable<'all' | 'active' | 'completed'>('all');
 
 export const addTodo = (data: Omit<Todo, 'id' | 'status'>) => {
 	todos.update(($todos) => [...$todos, createTodo(data)]);
