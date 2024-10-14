@@ -57,3 +57,16 @@ export const toggleTodoStatus = (data: Pick<Todo, 'id'>) => {
 export const clearCompleted = () => {
 	todos.update(($todos) => $todos.filter((todo) => !todo.status));
 };
+
+export const reorderTodos = (sourceId: number, targetId: number) => {
+	todos.update(($todos) => {
+		const sourceIndex = $todos.findIndex((todo) => todo.id === sourceId);
+		const targetIndex = $todos.findIndex((todo) => todo.id === targetId);
+
+		if (sourceIndex === -1 || targetIndex === -1 || sourceIndex === targetIndex) return $todos;
+
+		const [movedTodo] = $todos.splice(sourceIndex, 1); // Retirer la tâche de sa position actuelle
+		$todos.splice(targetIndex, 0, movedTodo); // Ajouter la tâche à la nouvelle position
+		return [...$todos]; // Retourner le nouvel état
+	});
+};

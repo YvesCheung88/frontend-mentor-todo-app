@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { filteredTodos, type Todo as TodoType } from '$lib/stores/Todo';
 	import { flip } from 'svelte/animate';
-	import FooterTodoList from './FooterTodoList.svelte';
+	import FooterTodoList from './TodoFooter.svelte';
 	import Todo from './Todo.svelte';
 	$: components = [...$filteredTodos, 'footer'];
 
@@ -17,3 +17,9 @@
 		{/if}
 	</div>
 {/each}
+
+<style lang="postcss">
+	div:nth-of-type(2) :global(.list) {
+		@apply rounded-t-md;
+	}
+</style>
