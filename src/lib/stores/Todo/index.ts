@@ -1,4 +1,3 @@
-import { browser } from '$app/environment';
 import { derived, writable } from 'svelte/store';
 
 export type Todo = {

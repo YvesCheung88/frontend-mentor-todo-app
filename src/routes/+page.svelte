@@ -21,21 +21,21 @@
 	<TodoTextInput />
 	<TodoList />
 </div>
+<div class="message">
+	<p>Drag and drop to reorder list</p>
+</div>
 
-<style>
+<style lang="postcss">
 	:root {
-		background-color: var(--very-dark-desaturated-blue);
+		@apply bg-dark-700;
 	}
 	figure {
-		position: relative;
-		padding-top: 256px;
-		z-index: -1;
+		@apply relative pt-64 -z-10;
 		& img {
-			position: absolute;
-			height: 256px;
-			top: 0px;
-			object-fit: cover;
-			width: 100%;
+			@apply absolute h-64 top-0 object-cover w-full;
 		}
+	}
+	p {
+		@apply text-center text-dark-400;
 	}
 </style>

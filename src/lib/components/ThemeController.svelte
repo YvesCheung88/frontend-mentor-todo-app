@@ -1,6 +1,6 @@
 <script lang="ts">
-	import IconMoon from '$lib/images/IconMoon.svelte';
-	import IconSun from '$lib/images/IconSun.svelte';
+	import IconMoon from '$lib/icons/IconMoon.svelte';
+	import IconSun from '$lib/icons/IconSun.svelte';
 	import { theme, toggleTheme } from '$lib/stores/theme';
 </script>
 
@@ -12,7 +12,7 @@
 </svelte:head>
 <button on:click={toggleTheme}>
 	{#if $theme === 'dark'}
-		<IconMoon />
+		<IconMoon size={32} />
 	{:else}
 		<IconSun />
 	{/if}
