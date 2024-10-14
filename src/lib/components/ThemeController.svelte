@@ -12,8 +12,8 @@
 </svelte:head>
 <button on:click={toggleTheme}>
 	{#if $theme === 'dark'}
-		<IconMoon size={32} />
-	{:else}
 		<IconSun />
+	{:else}
+		<IconMoon size={32} />
 	{/if}
 </button>

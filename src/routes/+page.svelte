@@ -16,24 +16,27 @@
 		/>
 	{/key}
 </figure>
-<div class="px-6 pb-11 max-w-[40rem] mx-auto">
+<section>
 	<Header />
 	<TodoTextInput />
 	<TodoList />
-</div>
+</section>
 <div class="message">
 	<p>Drag and drop to reorder list</p>
 </div>
 
 <style lang="postcss">
 	:root {
-		@apply bg-dark-700;
+		@apply bg-dark-700 text-dark-200;
 	}
 	figure {
 		@apply relative pt-64 -z-10;
 		& img {
 			@apply absolute h-64 top-0 object-cover w-full;
 		}
+	}
+	section {
+		@apply px-6 pb-11 max-w-[40rem] mx-auto;
 	}
 	p {
 		@apply text-center text-dark-400;
