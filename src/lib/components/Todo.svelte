@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { removeTodo, type Todo, toggleTodoStatus, reorderTodos } from '$lib/stores/Todo';
 	import { fade } from 'svelte/transition';
+	import { base } from '$app/paths';
 
 	export let todo: Todo;
 
@@ -15,7 +16,7 @@
 	}
 
 	function dragOver(event: DragEvent) {
-		event.preventDefault(); // Nécessaire pour permettre le drop
+		event.preventDefault();
 	}
 
 	function drop(event: DragEvent) {
@@ -37,10 +38,14 @@
 	role="listitem"
 	aria-grabbed="false"
 >
-	<input type="checkbox" bind:checked={status} />
+	<input
+		type="checkbox"
+		bind:checked={status}
+		style={`--image: url('${base}/images/icon-check.svg')`}
+	/>
 	<span class:checked={todo.status}>{todo.text}</span>
 	<button on:click={() => removeTodo(todo)}>
-		<img src="/images/icon-cross.svg" alt="cross" />
+		<img src="{base}/images/icon-cross.svg" alt="cross" />
 	</button>
 </div>
 
@@ -56,7 +61,8 @@
 					linear-gradient(to top left, hsl(280, 87%, 65%), hsl(192, 100%, 67%)) padding-box,
 					linear-gradient(to top left, hsl(280, 87%, 65%), hsl(192, 100%, 67%)) border-box;
 				&::after {
-					@apply absolute size-3 m-auto inset-0 bg-cover bg-[url('/images/icon-check.svg')];
+					@apply absolute size-3 m-auto inset-0 bg-cover;
+					background-image: var(--image);
 					content: ' ';
 				}
 			}

@@ -22,10 +22,10 @@
 	form {
 		@apply flex mb-5 p-4 rounded-md  bg-dark-600;
 		& input {
-			@apply outline-none size-[26px] bg-dark-600 mr-4;
+			@apply outline-none bg-dark-600 mr-4;
 		}
 		& input[type='checkbox'] {
-			@apply appearance-none rounded-full border border-dark-500;
+			@apply appearance-none rounded-full border border-dark-500 size-7;
 		}
 	}
 </style>
