@@ -4,6 +4,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import TodoTextInput from '$lib/components/TodoTextInput.svelte';
 	import TodoList from '$lib/components/TodoList.svelte';
+	import { base } from '$app/paths';
 </script>
 
 <figure>
@@ -11,7 +12,9 @@
 		<img
 			in:fade={{ duration: 900 }}
 			out:fade={{ duration: 900, delay: 450 }}
-			src={$theme === 'dark' ? '/images/bg-desktop-dark.jpg' : '/images/bg-desktop-light.jpg'}
+			src={$theme === 'dark'
+				? `${base}/images/bg-desktop-dark.jpg`
+				: `${base}/images/bg-desktop-light.jpg`}
 			alt="background"
 		/>
 	{/key}
